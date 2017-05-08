@@ -270,6 +270,11 @@ a:focus {
   color: black;
   background-color: #42DCA3;
 }
+
+#vid div {
+  margin-right: 30px;
+  padding-right: 50px;
+}
 ul.banner-social-buttons {
   margin-top: 0;
 }

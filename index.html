@@ -100,17 +100,19 @@
             <div class="container">
                 <div class="col-lg-12">
                     <h2>Datasets</h2>
-                    <div class="image-container">
-                        <img src="img/dataset1.png"> <a class="btn btn-info btn-md" href="http://www.massey.ac.nz/~albarcza/gesture_dataset2012.html">Massey</a>
-                    </div>
-                    <div class="image-container">
-                        <img src="img/dataset2.png"> <a class="btn btn-info btn-md" href="http://empslocal.ex.ac.uk/people/staff/np331/index.php?section=ComplexbackgroundDataset">Complex Background</a>
-                    </div>
-                    <div class="image-container">
-                        <img src="img/dataset3.jpg"> <a class="btn btn-info btn-md" href="https://www.ece.nus.edu.sg/stfpage/elepv/NUS-HandSet/">NUS Hand</a>
-                    </div>
-                    <div class="image-container">
-                        <img src="img/dataset5.jpg"> <a class="btn btn-info btn-" href="https://www.dropbox.com/sh/qzr8jw06ol2ztys/AABSjcY4JuEbu5-_TICXI9gJa?dl=0">Created Test Dataset</a>
+                    <div class="image-row">
+                        <div class="image-container">
+                            <img src="img/dataset1.png"> <a class="btn btn-info btn-md" href="http://www.massey.ac.nz/~albarcza/gesture_dataset2012.html">Massey</a>
+                        </div>
+                        <div class="image-container">
+                            <img src="img/dataset2.png"> <a class="btn btn-info btn-md" href="http://empslocal.ex.ac.uk/people/staff/np331/index.php?section=ComplexbackgroundDataset">Complex Background</a>
+                        </div>
+                        <div class="image-container">
+                            <img src="img/dataset3.jpg"> <a class="btn btn-info btn-md" href="https://www.ece.nus.edu.sg/stfpage/elepv/NUS-HandSet/">NUS Hand</a>
+                        </div>
+                        <div class="image-container">
+                            <img src="img/dataset5.jpg"> <a class="btn btn-info btn-" href="https://www.dropbox.com/sh/qzr8jw06ol2ztys/AABSjcY4JuEbu5-_TICXI9gJa?dl=0">Created Test Dataset</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -146,15 +148,25 @@
                             <div class="tab-pane text-justify" id="features" role="tabpanel">
                                 <p>After extracting the hand, we need to select features to use in Machine Learning classification.</p>
                                 <p>We felt that the features used need to generalise well, and so we resorted to using standard features such as</p>
-                                <ul>
-                                    <li>Gabor Filters</li>
-                                    <li>Leung-Malik (LM) Filter</li>
-                                    <li>Schmid (S) Filter</li>
-                                    <li>Maximum Response (MR) Filter</li>
-                                    <li>Histogram of Centroid Distances</li>
-                                    <li>SURF</li>
-                                </ul>
-                                <p></p>
+                                <div class="image-container">
+                                    <img src="img/gabor_filters.png">
+                                    <span>Gabor filters</span>
+                                </div>
+                                <div class="image-container">
+                                    <img src="img/lm_filters.png">
+                                    <span>Leung-Malik (LM) Filter</span>  
+                                </div>
+                                <div class="image-container">
+                                    <img src="img/s_filters.png">
+                                    <span>Schmid (S) Filter</span>  
+                                </div>
+                                <div class="image-container">
+                                    <img src="img/mr_filters.png">
+                                    <span>Maximum Response (MR) Filter</span>  
+                                </div>
+                                <br>
+                                <p>Histogram of Centroid Distances</p>
+                                <p>SURF</p>
                             </div>
                             <div class="tab-pane text-justify" id="classification" role="tabpanel">
                                 <p>For the purpose of classification, we have used standard machine learning algorithms like</p>
@@ -164,150 +176,226 @@
                                     <li>Convolutional Neural Nets</li>
                                     <li>Random Forest</li>
                                 </ul>
+
                                 <p>All the filters and learning algorithms are applied separately and the accuracies on the datasets have been measured to determine the best methods going forward.</p>
-                            </div>                        
-                        </div>
-                    </div>
+
+                                <table class="table">
+                                    <p>Test with data different from Training data</p>
+                                    <tr>
+                                      <th rowspan="2">Method</th>
+                                      <th colspan="3">Accuracy</th>
+                                  </tr>
+                                  <tr>
+                                    <td>KNN</td>
+                                    <td>SVM</td>
+                                    <td>Random Forest</td>
+                                </tr>
+                                <tr>
+                                    <td>HOCD</td>
+                                    <td>0.2</td>
+                                    <td>0.3</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr>
+                                    <td >Gabor Filter</td>
+                                    <td >0.8</td>
+                                    <td >0.7</td>
+                                    <td >0.6</td>
+                                </tr>
+                                <tr>
+                                    <td >SURF</td>
+                                    <td >0</td>
+                                    <td >-</td>
+                                    <td >-</td>
+                                </tr>
+                                <tr>
+                                    <td >HOCD+Gabor</td>
+                                    <td >0.8</td>
+                                    <td >0.7</td>
+                                    <td >0.8</td>
+                                </tr>
+                            </table>
+
+                            <table class="table">
+                                <p>Test with derived by partitioningTraining data</p>
+                                <tr>
+                                  <th rowspan="2">Method</th>
+                                  <th colspan="3">Accuracy</th>
+                              </tr>
+                              <tr>
+                                <td>KNN</td>
+                                <td>SVM</td>
+                                <td>Random Forest</td>
+                            </tr>
+                            <tr>
+                                <td>HOCD</td>
+                                <td>1</td>
+                                <td>0.4</td>
+                                <td>0.4</td>
+                            </tr>
+                            <tr>
+                                <td >Gabor Filter</td>
+                                <td >0.8</td>
+                                <td >0.8</td>
+                                <td >0.7</td>
+                            </tr>
+                            <tr>
+                                <td >SURF</td>
+                                <td >0.15</td>
+                                <td >-</td>
+                                <td >-</td>
+                            </tr>
+                            <tr>
+                                <td >HOCD+Gabor</td>
+                                <td >0.8</td>
+                                <td >0.89</td>
+                                <td >0.6</td>
+                            </tr>
+                        </table>
+
+                    </div>                        
                 </div>
-            </div>
-        </section>
-
-        <!-- Challenges Section -->
-        <section class="container content-section text-justify" id="challenges">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Challenges</h2>
-                    <p>Challenges in the 3 steps to recognize a hand sign.</p>
-                    <div>
-                        <!-- Nav tabs -->
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="active" role="presentation">
-                                <a aria-controls="home" data-toggle="tab" href="#isolate-challenges" role="tab">Isolate hand from background</a>
-                            </li>
-                            <li role="presentation">
-                                <a aria-controls="profile" data-toggle="tab" href="#features-challenges" role="tab">Extract features to represent hand</a>
-                            </li>
-                            <li role="presentation">
-                                <a aria-controls="messages" data-toggle="tab" href="#classification-challenges" role="tab">Classification using ML</a>
-                            </li>
-                        </ul><!-- Tab panes -->
-                        <div class="tab-content">
-                            <div class="tab-pane active text-justify" id="isolate-challenges" role="tabpanel">
-                                <p>
-                                    Any one method for hand isolation does not seem to work well enough that we can feed the result to a classifier. Hence we have had to combine two methods for isolation and consider other methods. 
-                                </p>
-                                <p>
-                                    <strong>Skin Probability Mapping</strong> The result is dependent on the initial threshold values for color components. Which means this method will not generalize well for all skin tones. Also objects in the scene whose color is close to the skin color threshold act as noise. The algorithm is not robust to changes in lighting conditions since it works with hue and saturation.
-                                    <div class="image-row">
-                                        <div class="image-container">
-                                            <img class="img-responsive" src="img/spm1.png">
-                                            <span>Hand in black background</span>
-                                        </div>
-                                        <div class="image-container">
-                                            <img class="img-responsive" src="img/spm2.png">
-                                            <span>SPM does well</span>
-                                        </div>
-                                    </div>
-                                    <div class="image-row">
-
-                                        <div class="image-container">
-                                            <img class="img-responsive" src="img/spm3.png">
-                                            <span>Hand in well lit noisy background</span>
-                                        </div>
-                                        <div class="image-container">
-                                            <img class="img-responsive" src="img/spm4.png">
-                                            <span>SPM does acceptably well</span>
-                                        </div>
-                                    </div>
-                                    <div class="image-row">
-                                        <div class="image-container">
-                                            <img class="img-responsive" src="img/spm5.png">
-                                            <span>Hand with skin-colored background</span>
-                                        </div>
-                                        <div class="image-container">
-                                            <img class="img-responsive" src="img/spm6.png">
-                                            <span>SPM does not give good result</span>
-                                        </div>
-
-                                    </div>  
-                                </p>
-                                <p>
-                                 <strong>Image differencing</strong> This method is useful only if the hand is moving, so other moving elements in the scene add noise. Background subtraction This method does not take into account changes in lighting in the scene due to movement. The approach is highly sensitive to the initial threshold and adaptation speed and the values we have used are empirically chosen. The background subtraction algorithm fails to extract the entire hand when the latter moves over background objects of a similar color
-                                 <div class="image-row">
-                                    <div class="image-container">
-                                    <img class="img-responsive" src="img/image_diff.png">
-                                        <span>Image differencing has noise</span>
-                                    </div>
-                                </div>  
-                            </p>
-                        </div>
-                        <div class="tab-pane text-justify" id="features-challenges" role="tabpanel">
-                            <p>
-                                <strong>HOCD</strong> does not generalise well on new hands. For some fingerspelling gestures like ’m’ and ’n’ which have almost similar shape, HOCD would give a similar feature vector and hence, we would have a bad classification using only these features. 
-                                <div class="image-row">
-                                    <div class="image-container">
-                                        <img class="img-responsive" src="img/asl_m.png">
-                                        <span>ASL M</span>
-                                    </div>
-                                    <div class="image-container">
-                                        <img class="img-responsive" src="img/asl_n.png">
-                                        <span>ASL N</span>
-                                    </div>
-                                    <div class="image-container">
-                                        <img class="img-responsive" src="img/asl_t.png">
-                                        <span>ASL T</span>
-                                    </div>
-                                </div>
-                                <div class="image-row">
-                                    <div class="image-container">
-                                        <img class="img-responsive" src="img/hocd_m.jpg">
-                                        <span>Binary M</span>
-                                    </div>
-                                    <div class="image-container">
-                                        <img class="img-responsive" src="img/hocd_n.jpg">
-                                        <span>Binary N</span>
-                                    </div>
-                                    <div class="image-container">
-                                        <img class="img-responsive" src="img/hocd_t.jpg">
-                                        <span>Binary T</span>
-                                    </div>
-                                </div>
-                            </p>
-                            <p>
-                                <strong>Gabor Filters</strong> The feature extraction system is not invariant to rotation, scaling and translational changes. Scaling and translation can be compensated easily enough as soon as the hand has been correctly segmented. However, rotation differences are difficult to detect on the segmented hand and compensate and so it remains a problem. 
-                            </p>
-                            <p>
-                                <strong>SURF and Bag of words</strong> It was reasoned out that these features are not suitable for actual implementation, because they fail to capture enough information from the images because of illumination differences playing a major role in different key-points extracted on train and test images.
-                            </p>
-                            <p>
-                                <strong>Object detection</strong> does not generalize well to different kinds of hands. This is an important factor since no two people sign the same sign in exactly the same way.
-                                <div class="image-row">
-                                    <div class="image-container">
-                                        <img class="img-responsive" src="img/obj_detection_1.jpg">
-                                        <span>Instance where object detection works</span>
-                                    </div>
-                                    <div class="image-container">
-                                        <img class="img-responsive" src="img/obj_detection_2.jpg">
-                                        <span>Instance where object detection doesn't work</span>
-                                    </div>
-                                </div>  
-                            </p>
-                        </div>
-                        <div class="tab-pane text-justify" id="classification-challenges" role="tabpanel">
-                         <p>
-                             We observed that CNN gives the best result followed by KNN , followed by SVM, followed by Random Forest.
-                         </p>
-                         <p>
-                            CNN works very well if the background does not add any noise to the hand sign. It performs well (0.9+ accuracy) if the nature of the background is similar in training and test images. Any change in background from the training to the testing causes fall in accuracy (66%), i.e. CNNs do not generalize well.
-                        </p>
-                        <p>
-                            The other classifiers depend heavily on the features which in turn depend heavily on the nature of the images. The current set of features we have experimented with are all susceptible to noise.
-                        </p>
-                    </div> 
-                </div>                        
             </div>
         </div>
     </div>
+</section>
+
+<!-- Challenges Section -->
+<section class="container content-section text-justify" id="challenges">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Challenges</h2>
+            <p>Challenges in the 3 steps to recognize a hand sign.</p>
+            <div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active" role="presentation">
+                        <a aria-controls="home" data-toggle="tab" href="#isolate-challenges" role="tab">Isolate hand from background</a>
+                    </li>
+                    <li role="presentation">
+                        <a aria-controls="profile" data-toggle="tab" href="#features-challenges" role="tab">Extract features to represent hand</a>
+                    </li>
+                    <li role="presentation">
+                        <a aria-controls="messages" data-toggle="tab" href="#classification-challenges" role="tab">Classification using ML</a>
+                    </li>
+                </ul><!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active text-justify" id="isolate-challenges" role="tabpanel">
+                        <p>
+                            Any one method for hand isolation does not seem to work well enough that we can feed the result to a classifier. Hence we have had to combine two methods for isolation and consider other methods. 
+                        </p>
+                        <p>
+                            <strong>Skin Probability Mapping</strong> The result is dependent on the initial threshold values for color components. Which means this method will not generalize well for all skin tones. Also objects in the scene whose color is close to the skin color threshold act as noise. The algorithm is not robust to changes in lighting conditions since it works with hue and saturation.
+                            <div class="image-row">
+                                <div class="image-container">
+                                    <img class="img-responsive" src="img/spm1.png">
+                                    <span>Hand in black background</span>
+                                </div>
+                                <div class="image-container">
+                                    <img class="img-responsive" src="img/spm2.png">
+                                    <span>SPM does well</span>
+                                </div>
+                            </div>
+                            <div class="image-row">
+
+                                <div class="image-container">
+                                    <img class="img-responsive" src="img/spm3.png">
+                                    <span>Hand in well lit noisy background</span>
+                                </div>
+                                <div class="image-container">
+                                    <img class="img-responsive" src="img/spm4.png">
+                                    <span>SPM does acceptably well</span>
+                                </div>
+                            </div>
+                            <div class="image-row">
+                                <div class="image-container">
+                                    <img class="img-responsive" src="img/spm5.png">
+                                    <span>Hand with skin-colored background</span>
+                                </div>
+                                <div class="image-container">
+                                    <img class="img-responsive" src="img/spm6.png">
+                                    <span>SPM does not give good result</span>
+                                </div>
+
+                            </div>  
+                        </p>
+                        <p>
+                           <strong>Image differencing</strong> This method is useful only if the hand is moving, so other moving elements in the scene add noise. Background subtraction This method does not take into account changes in lighting in the scene due to movement. The approach is highly sensitive to the initial threshold and adaptation speed and the values we have used are empirically chosen. The background subtraction algorithm fails to extract the entire hand when the latter moves over background objects of a similar color
+                           <div class="image-row">
+                            <div class="image-container">
+                                <img class="img-responsive" src="img/image_diff.png">
+                                <span>Image differencing has noise</span>
+                            </div>
+                        </div>  
+                    </p>
+                </div>
+                <div class="tab-pane text-justify" id="features-challenges" role="tabpanel">
+                    <p>
+                        <strong>HOCD</strong> does not generalise well on new hands. For some fingerspelling gestures like ’m’ and ’n’ which have almost similar shape, HOCD would give a similar feature vector and hence, we would have a bad classification using only these features. 
+                        <div class="image-row">
+                            <div class="image-container">
+                                <img class="img-responsive" src="img/asl_m.png">
+                                <span>ASL M</span>
+                            </div>
+                            <div class="image-container">
+                                <img class="img-responsive" src="img/asl_n.png">
+                                <span>ASL N</span>
+                            </div>
+                            <div class="image-container">
+                                <img class="img-responsive" src="img/asl_t.png">
+                                <span>ASL T</span>
+                            </div>
+                        </div>
+                        <div class="image-row">
+                            <div class="image-container">
+                                <img class="img-responsive" src="img/hocd_m.jpg">
+                                <span>Binary M</span>
+                            </div>
+                            <div class="image-container">
+                                <img class="img-responsive" src="img/hocd_n.jpg">
+                                <span>Binary N</span>
+                            </div>
+                            <div class="image-container">
+                                <img class="img-responsive" src="img/hocd_t.jpg">
+                                <span>Binary T</span>
+                            </div>
+                        </div>
+                    </p>
+                    <p>
+                        <strong>Gabor Filters</strong> The feature extraction system is not invariant to rotation, scaling and translational changes. Scaling and translation can be compensated easily enough as soon as the hand has been correctly segmented. However, rotation differences are difficult to detect on the segmented hand and compensate and so it remains a problem. 
+                    </p>
+                    <p>
+                        <strong>SURF and Bag of words</strong> It was reasoned out that these features are not suitable for actual implementation, because they fail to capture enough information from the images because of illumination differences playing a major role in different key-points extracted on train and test images.
+                    </p>
+                    <p>
+                        <strong>Object detection</strong> does not generalize well to different kinds of hands. This is an important factor since no two people sign the same sign in exactly the same way.
+                        <div class="image-row">
+                            <div class="image-container">
+                                <img class="img-responsive" src="img/obj_detection_1.jpg">
+                                <span>Instance where object detection works</span>
+                            </div>
+                            <div class="image-container">
+                                <img class="img-responsive" src="img/obj_detection_2.jpg">
+                                <span>Instance where object detection doesn't work</span>
+                            </div>
+                        </div>  
+                    </p>
+                </div>
+                <div class="tab-pane text-justify" id="classification-challenges" role="tabpanel">
+                   <p>
+                       We observed that CNN gives the best result followed by KNN , followed by SVM, followed by Random Forest.
+                   </p>
+                   <p>
+                    CNN works very well if the background does not add any noise to the hand sign. It performs well (0.9+ accuracy) if the nature of the background is similar in training and test images. Any change in background from the training to the testing causes fall in accuracy (66%), i.e. CNNs do not generalize well.
+                </p>
+                <p>
+                    The other classifiers depend heavily on the features which in turn depend heavily on the nature of the images. The current set of features we have experimented with are all susceptible to noise.
+                </p>
+            </div> 
+        </div>                        
+    </div>
+</div>
+</div>
 </section>
 
 
@@ -332,9 +420,9 @@
             <div class="col-lg-12">
                 <h2>Results</h2>
                 <div class ="row">
-                 <div class ="col-md-4">
-                     <br><br><br>
-                     <table class="table ">
+                   <div class ="col-md-4">
+                       <br><br><br>
+                       <table class="table ">
                         <thead> 
                             <tr> 
                                 <th scope="row">#</th>
@@ -344,24 +432,24 @@
                         </thead> 
                         <tbody> 
                             <tr> 
-                             <th scope="row">1</th> 
-                             <td>HOCD</td> 
-                             <td>0</td>   
-                         </tr> 
-                         <tr  style="background-color: #438D80;"> 
-                             <th scope="row">2</th> 
-                             <td>Gabor Filters</td> 
-                             <td>0.56</td>  
-                         </tr> 
-                         <tr"> 
-                         <th scope="row">3</th> 
-                         <td>SURF</td> 
-                         <td>0.1</td>  
-                     </tr> 
-                 </tbody> 
-             </table>
-         </div>
-         <div class="col-md-4">
+                               <th scope="row">1</th> 
+                               <td>HOCD</td> 
+                               <td>0</td>   
+                           </tr> 
+                           <tr  style="background-color: #438D80;"> 
+                               <th scope="row">2</th> 
+                               <td>Gabor Filters</td> 
+                               <td>0.56</td>  
+                           </tr> 
+                           <tr"> 
+                           <th scope="row">3</th> 
+                           <td>SURF</td> 
+                           <td>0.1</td>  
+                       </tr> 
+                   </tbody> 
+               </table>
+           </div>
+           <div class="col-md-4">
             <video width="320" height="240" controls="">
               <source src="videos/hand tracking.mp4" type="video/mp4">
                 Your browser does not support the video tag.

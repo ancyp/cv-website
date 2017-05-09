@@ -28,13 +28,13 @@ h6 {
 }
 p {
   margin: 0 0 25px;
-  font-size: 8px;
+  font-size: 18px;
   line-height: 1.5;
 }
 @media (min-width: 768px) {
   p {
     margin: 0 0 35px;
-    font-size: 10px;
+    font-size: 18px;
     line-height: 1.6;
   }
 }
@@ -100,6 +100,9 @@ a:focus {
 }
 .navbar-custom .nav li.active a:hover {
   color: white;
+}
+.image-container {
+  display: inline-grid;
 }
 @media (min-width: 768px) {
   .navbar-custom {

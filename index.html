@@ -173,158 +173,236 @@
         </section>
 
         <!-- Challenges Section -->
-        <section class="content-section text-justify" id="challenges">
-            <div>
-                <div class="container">
-                    <div class="col-lg-12">
-                        <h2>Challenges</h2>
-                        <h5>Isolating hand from background</h5>
-                        <p></p>
-                        <p>Any one method for hand isolation does not seem to work well enough that we can feed the result to a classifier. Hence we have had to combine two methods for isolation and consider other methods. Skin Probability Mapping The result is dependent on the initial threshold values for color components. Which means this method will not generalize well for all skin tones. Also objects in the scene whose color is close to the skin color threshold act as noise. The algorithm is not robust to changes in lighting conditions since it works with hue and saturation. <img alt="Responsive image" class="img-responsive" src="img/SPM_bbg.png"> Image differencing This method is useful only if the hand is moving, so other moving elements in the scene add noise. Background subtraction This method does not take into account changes in lighting in the scene due to movement. The approach is highly sensitive to the initial threshold and adaptation speed and the values we have used are empirically chosen. The background subtraction algorithm fails to extract the entire hand when the latter moves over background objects of a similar color</p>
-                        <p></p>
-                        <h5>Extracting Features for Classification</h5>
-                        <p></p>
-                        <p>HOCD HOCD does not generalise well on new hands. For some fingerspelling gestures like ’m’ and ’n’ which have almost similar shape, HOCD would give a similar feature vector and hence, we would have a bad classification using only these features. Gabor Filters The feature extraction system is not invariant to rotation, scaling and translational changes. Scaling and translation can be compensated easily enough as soon as the hand has been correctly segmented. However, rotation differences are difficult to detect on the segmented hand and compensate and so it remains a problem. SURF and Bag of words It was reasoned out that these features are not suitable for actual implementation, because they fail to capture enough information from the images because of illumination differences playing a major role in different key-points extracted on train and test images.</p>
-                        <p></p>
-                        <h5>Classification using Machine Learning Algorithms</h5>
-                        <p></p>
-                        <p>We observed that CNN gives the best result followed by KNN , followed by SVM, followed by Random Forest.<br>
-                            CNN works very well if the background does not add any noise to the hand sign. It performs well (0.9+ accuracy) if the nature of the background is similar in training and test images. Any change in background from the training to the testing causes fall in accuracy (66%), i.e. CNNs do not generalize well.<br>
-                            The other classifiers depend heavily on the features which in turn depend heavily on the nature of the images. The current set of features we have experimented with are all susceptible to noise.<br></p>
+        <section class="container content-section text-justify" id="challenges">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Challenges</h2>
+                    <p>Challenges in the 3 steps to recognize a hand sign.</p>
+                    <div>
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="active" role="presentation">
+                                <a aria-controls="home" data-toggle="tab" href="#isolate-challenges" role="tab">Isolate hand from background</a>
+                            </li>
+                            <li role="presentation">
+                                <a aria-controls="profile" data-toggle="tab" href="#features-challenges" role="tab">Extract features to represent hand</a>
+                            </li>
+                            <li role="presentation">
+                                <a aria-controls="messages" data-toggle="tab" href="#classification-challenges" role="tab">Classification using ML</a>
+                            </li>
+                        </ul><!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active text-justify" id="isolate-challenges" role="tabpanel">
+                                <p>
+                                    Any one method for hand isolation does not seem to work well enough that we can feed the result to a classifier. Hence we have had to combine two methods for isolation and consider other methods. 
+                                </p>
+                                <p>
+                                    <strong>Skin Probability Mapping</strong> The result is dependent on the initial threshold values for color components. Which means this method will not generalize well for all skin tones. Also objects in the scene whose color is close to the skin color threshold act as noise. The algorithm is not robust to changes in lighting conditions since it works with hue and saturation.
+                                </p>
+                                <img alt="Responsive image" class="img-responsive" src="img/SPM_bbg.png"> 
+                                <p>
+                                 <strong>Image differencing</strong> This method is useful only if the hand is moving, so other moving elements in the scene add noise. Background subtraction This method does not take into account changes in lighting in the scene due to movement. The approach is highly sensitive to the initial threshold and adaptation speed and the values we have used are empirically chosen. The background subtraction algorithm fails to extract the entire hand when the latter moves over background objects of a similar color
+                             </p>
+                         </div>
+                         <div class="tab-pane text-justify" id="features-challenges" role="tabpanel">
+                            <p>
+                                <strong>HOCD</strong> does not generalise well on new hands. For some fingerspelling gestures like ’m’ and ’n’ which have almost similar shape, HOCD would give a similar feature vector and hence, we would have a bad classification using only these features. 
+                                <div class="image-row">
+                                    <div class="image-container">
+                                        <img class="img-responsive" src="img/asl_m.png">
+                                        <span>ASL M</span>
+                                    </div>
+                                    <div class="image-container">
+                                        <img class="img-responsive" src="img/asl_n.png">
+                                        <span>ASL N</span>
+                                    </div>
+                                    <div class="image-container">
+                                        <img class="img-responsive" src="img/asl_t.png">
+                                        <span>ASL T</span>
+                                    </div>
+                                </div>
+                                <div class="image-row">
+                                    <div class="image-container">
+                                        <img class="img-responsive" src="img/hocd_m.jpg">
+                                        <span>Binary M</span>
+                                    </div>
+                                    <div class="image-container">
+                                        <img class="img-responsive" src="img/hocd_n.jpg">
+                                        <span>Binary N</span>
+                                    </div>
+                                    <div class="image-container">
+                                        <img class="img-responsive" src="img/hocd_t.jpg">
+                                        <span>Binary T</span>
+                                    </div>
+                                </div>
+                            </p>
+                            <p>
+                                <strong>Gabor Filters</strong> The feature extraction system is not invariant to rotation, scaling and translational changes. Scaling and translation can be compensated easily enough as soon as the hand has been correctly segmented. However, rotation differences are difficult to detect on the segmented hand and compensate and so it remains a problem. 
+                            </p>
+                            <p>
+                                <strong>SURF and Bag of words</strong> It was reasoned out that these features are not suitable for actual implementation, because they fail to capture enough information from the images because of illumination differences playing a major role in different key-points extracted on train and test images.
+                            </p>
+                            <p>
+                                <strong>Object detection</strong> does not generalize well to different kinds of hands. This is an important factor since no two people sign the same sign in exactly the same way.
+                              <div class="image-row">
+                                    <div class="image-container">
+                                        <img class="img-responsive" src="img/obj_detection_1.jpg">
+                                        <span>Instance where object detection works</span>
+                                    </div>
+                                    <div class="image-container">
+                                        <img class="img-responsive" src="img/obj_detection_2.jpg">
+                                        <span>Instance where object detection doesn't work</span>
+                                    </div>
+                                </div>  
+                            </p>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Code -->
-            <section class="content-section text-justify" id="github-repo">
-                <div>
-                    <div class="container">
-                        <div class="col-lg-12">
-                            <h2>Code</h2>
-                            <a class="btn btn-default btn-lg" href="https://github.com/pavankm/CS766/tree/master"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-           
-
-            <!-- Results Section -->
-         <section id="result" class="content-section text-center">
-            <div>
-                <div class="container">
-                    <div class="col-lg-12 col-lg-offset-1">
-                        <h2>Results</h2>
-                       <div class ="row">
-                       <div class ="col-md-4">
-                       <br><br><br>
-                         <table class="table ">
-                                    <thead> 
-                                        <tr> 
-                                            <th scope="row">#</th>
-                                           <th>Method</th> 
-                                           <th>Accuracy</th> 
-                                       </tr> 
-                                   </thead> 
-                                   <tbody> 
-                                    <tr> 
-                                       <th scope="row">1</th> 
-                                       <td>HOCD</td> 
-                                       <td>0</td>   
-                                   </tr> 
-                                   <tr> 
-                                       <th scope="row">2</th> 
-                                       <td>Gabor Filters</td> 
-                                       <td>0.56</td>  
-                                   </tr> 
-                                   <tr> 
-                                       <th scope="row">3</th> 
-                                       <td>SURF</td> 
-                                       <td>0.1</td>  
-                                   </tr> 
-                                   </tbody> 
-                        </table>
-                           </div>
-                        <div class="col-md-4">
-                            <video width="320" height="240" controls="">
-                              <source src="videos/hand tracking.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <h5>Hand Tracking</h5>
-                        </div>
-
-                        <div class="col-md-4">
-                            <video width="320" height="240" controls="" src="videos/vid1.mov">
-                                Your browser does not support the video tag.
-                            </video>
-                            <h5>Final Result</h5>
-                          </div>
-                    </div>     
-                </div>
+                        <div class="tab-pane text-justify" id="classification-challenges" role="tabpanel">
+                         <p>
+                             We observed that CNN gives the best result followed by KNN , followed by SVM, followed by Random Forest.
+                         </p>
+                         <p>
+                            CNN works very well if the background does not add any noise to the hand sign. It performs well (0.9+ accuracy) if the nature of the background is similar in training and test images. Any change in background from the training to the testing causes fall in accuracy (66%), i.e. CNNs do not generalize well.
+                        </p>
+                        <p>
+                            The other classifiers depend heavily on the features which in turn depend heavily on the nature of the images. The current set of features we have experimented with are all susceptible to noise.
+                        </p>
+                    </div> 
+                </div>                        
             </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Code -->
+<section class="content-section text-justify" id="github-repo">
+    <div>
+        <div class="container">
+            <div class="col-lg-12">
+                <h2>Code</h2>
+                <a class="btn btn-default btn-lg" href="https://github.com/pavankm/CS766/tree/master"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
             </div>
-        </section>
-            <!-- References Section -->
-            <section class="content-section text-justify" id="references">
-                <div>
-                    <div class="container">
-                        <div class="col-lg-12">
-                            <h2>References</h2>
-                            <p><a href="https://s3.amazonaws.com/academia.edu.documents/44580807/A_survey_of_skin-color_modeling_and_dete20160409-14723-aklewp.pdf?AWSAccessKeyId=AKIAIWOWYYGZ2Y53UL3A&Expires=1494291484&Signature=4ExfC1S9fG4kbALXIKzV87fF9F4%3D&response-content-disposition=inline%3B%20filename%3DA_survey_of_skin-color_modeling_and_dete.pdf">[ 1 ] Kakumanu, Praveen, Sokratis Makrogiannis, and Nikolaos Bourbakis. "A survey of skin-color modeling and detection methods." Pattern recognition 40.3 (2007): 1106-1122.</a></p>
-                            <p><a href="http://www.cse.unsw.edu.au/~icml2002/workshops/MLCV02/MLCV02-Morales.pdf">[ 2 ] Gomez, Giovani, and Eduardo Morales. "Automatic feature construction and a simple rule induction algorithm for skin detection." Proc. of the ICML workshop on Machine Learning in Computer Vision. Vol. 31. 2002.</a></p>
-                            <p><a href="http://www.cs.stevens-tech.edu/~kamberov/Papers/ASystemforVideoSurveillanceAndMonitoring.pdf">[ 3 ] Collins, Robert T., et al. "A system for video surveillance and monitoring." (2000): 1456-1471.</a></p>
-                            <p><a href="https://www.researchgate.net/profile/Nikos_Papamarkos/publication/263088565_Real_Time_Hand_Detection_in_a_Complex_Background/links/00b7d53c306675af94000000.pdf">[ 4 ] Stergiopoulou, Ekaterini, et al. "Real time hand detection in a complex background." Engineering Applications of Artificial Intelligence 35 (2014): 54-70.</a></p>
-                            <p><a href="http://www.massey.ac.nz/~albarcza/gesture_dataset2012.html">[ 5 ] Massey Dataset</a></p>
-                            <p><a href="http://empslocal.ex.ac.uk/people/staff/np331/index.php?section=ComplexbackgroundDataset">[ 6 ] Hand with complex Background</a></p>
-                            <p><a href="https://www.ece.nus.edu.sg/stfpage/elepv/NUS-HandSet/">[ 7 ] NUS dataset</a></p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        </div>
+    </div>
+</section>
 
 
-            <!-- Midterm Report -->
-            <section class="content-section text-justify" id="midterm-report">
-                <div>
-                    <div class="container">
-                        <div class="col-lg-12">
-                            <h2>Mid-term Report</h2>
-                            <p><a href="https://docs.google.com/document/d/1JizHbI3bwTzVAXLTrrCnwG7VZqRMWIeOCLJnGV_sru4/edit?usp=sharing">Link</a><br></p><iframe height="569" src="https://docs.google.com/document/d/1JizHbI3bwTzVAXLTrrCnwG7VZqRMWIeOCLJnGV_sru4/pub?embedded=true" width="960"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            <!-- Final Presentation -->
-            <section class="content-section text-justify" id="presentation">
-                <div>
-                    <div class="container">
-                        <div class="col-lg-12">
-                            <h2>Final Presentation</h2>
-                            <p><a href="https://docs.google.com/presentation/d/1iZVdmmRZLHIcgmz1H7jhqcJICaX7vaCjfe4hiHo61mA/edit?usp=sharing">Link</a><br></p><iframe allowfullscreen="true" frameborder="0" height="569" src="https://docs.google.com/presentation/d/1iZVdmmRZLHIcgmz1H7jhqcJICaX7vaCjfe4hiHo61mA/embed?start=false&loop=false&delayms=3000" width="960"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </section>
+<!-- Results Section -->
+<section id="result" class="content-section text-justify">
+    <div>
+        <div class="container">
+            <div class="col-lg-12">
+                <h2>Results</h2>
+                <div class ="row">
+                 <div class ="col-md-4">
+                     <br><br><br>
+                     <table class="table ">
+                        <thead> 
+                            <tr> 
+                                <th scope="row">#</th>
+                                <th>Method</th> 
+                                <th>Accuracy</th> 
+                            </tr> 
+                        </thead> 
+                        <tbody> 
+                            <tr> 
+                             <th scope="row">1</th> 
+                             <td>HOCD</td> 
+                             <td>0</td>   
+                         </tr> 
+                         <tr  style="background-color: #438D80;"> 
+                             <th scope="row">2</th> 
+                             <td>Gabor Filters</td> 
+                             <td>0.56</td>  
+                         </tr> 
+                         <tr"> 
+                         <th scope="row">3</th> 
+                         <td>SURF</td> 
+                         <td>0.1</td>  
+                     </tr> 
+                 </tbody> 
+             </table>
+         </div>
+         <div class="col-md-4">
+            <video width="320" height="240" controls="">
+              <source src="videos/hand tracking.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h5>Hand Tracking</h5>
+        </div>
 
-            <!-- Footer -->
-            <footer>
-                <div class="container text-center">
-                    <p>ASL Sign Language Detection</p>
-                    <p>CS766 Spring 2017</p>
-                </div>
-            </footer>
+        <div class="col-md-4">
+            <video width="320" height="240" controls="" src="videos/vid1.mov">
+                Your browser does not support the video tag.
+            </video>
+            <h5>Final Result</h5>
+        </div>
+    </div>     
+</div>
+</div>
+</div>
+</section>
+<!-- References Section -->
+<section class="content-section text-justify" id="references">
+    <div>
+        <div class="container">
+            <div class="col-lg-12">
+                <h2>References</h2>
+                <p><a href="https://s3.amazonaws.com/academia.edu.documents/44580807/A_survey_of_skin-color_modeling_and_dete20160409-14723-aklewp.pdf?AWSAccessKeyId=AKIAIWOWYYGZ2Y53UL3A&Expires=1494291484&Signature=4ExfC1S9fG4kbALXIKzV87fF9F4%3D&response-content-disposition=inline%3B%20filename%3DA_survey_of_skin-color_modeling_and_dete.pdf">[ 1 ] Kakumanu, Praveen, Sokratis Makrogiannis, and Nikolaos Bourbakis. "A survey of skin-color modeling and detection methods." Pattern recognition 40.3 (2007): 1106-1122.</a></p>
+                <p><a href="http://www.cse.unsw.edu.au/~icml2002/workshops/MLCV02/MLCV02-Morales.pdf">[ 2 ] Gomez, Giovani, and Eduardo Morales. "Automatic feature construction and a simple rule induction algorithm for skin detection." Proc. of the ICML workshop on Machine Learning in Computer Vision. Vol. 31. 2002.</a></p>
+                <p><a href="http://www.cs.stevens-tech.edu/~kamberov/Papers/ASystemforVideoSurveillanceAndMonitoring.pdf">[ 3 ] Collins, Robert T., et al. "A system for video surveillance and monitoring." (2000): 1456-1471.</a></p>
+                <p><a href="https://www.researchgate.net/profile/Nikos_Papamarkos/publication/263088565_Real_Time_Hand_Detection_in_a_Complex_Background/links/00b7d53c306675af94000000.pdf">[ 4 ] Stergiopoulou, Ekaterini, et al. "Real time hand detection in a complex background." Engineering Applications of Artificial Intelligence 35 (2014): 54-70.</a></p>
+                <p><a href="http://www.massey.ac.nz/~albarcza/gesture_dataset2012.html">[ 5 ] Massey Dataset</a></p>
+                <p><a href="http://empslocal.ex.ac.uk/people/staff/np331/index.php?section=ComplexbackgroundDataset">[ 6 ] Hand with complex Background</a></p>
+                <p><a href="https://www.ece.nus.edu.sg/stfpage/elepv/NUS-HandSet/">[ 7 ] NUS dataset</a></p>
+            </div>
+        </div>
+    </div>
+</section>
 
-            <!-- jQuery -->
-            <script src="vendor/jquery/jquery.js">
-            </script> <!-- Bootstrap Core JavaScript -->
-            <script src="vendor/bootstrap/js/bootstrap.min.js">
-            </script> <!-- Plugin JavaScript -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js">
-            </script> 
-        </script> <!-- Theme JavaScript -->
-        <script src="js/grayscale.min.js">
-        </script>
-    </body>
-    </html>
+
+<!-- Midterm Report -->
+<section class="content-section text-justify" id="midterm-report">
+    <div>
+        <div class="container">
+            <div class="col-lg-12">
+                <h2>Mid-term Report</h2>
+                <p><a href="https://docs.google.com/document/d/1JizHbI3bwTzVAXLTrrCnwG7VZqRMWIeOCLJnGV_sru4/edit?usp=sharing">Link</a><br></p><iframe height="569" src="https://docs.google.com/document/d/1JizHbI3bwTzVAXLTrrCnwG7VZqRMWIeOCLJnGV_sru4/pub?embedded=true" width="960"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final Presentation -->
+<section class="content-section text-justify" id="presentation">
+    <div>
+        <div class="container">
+            <div class="col-lg-12">
+                <h2>Final Presentation</h2>
+                <p><a href="https://docs.google.com/presentation/d/1iZVdmmRZLHIcgmz1H7jhqcJICaX7vaCjfe4hiHo61mA/edit?usp=sharing">Link</a><br></p><iframe allowfullscreen="true" frameborder="0" height="569" src="https://docs.google.com/presentation/d/1iZVdmmRZLHIcgmz1H7jhqcJICaX7vaCjfe4hiHo61mA/embed?start=false&loop=false&delayms=3000" width="960"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container text-center">
+        <p>ASL Sign Language Detection</p>
+        <p>CS766 Spring 2017</p>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="vendor/jquery/jquery.js">
+</script> <!-- Bootstrap Core JavaScript -->
+<script src="vendor/bootstrap/js/bootstrap.min.js">
+</script> <!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js">
+</script> 
+</script> <!-- Theme JavaScript -->
+<script src="js/grayscale.min.js">
+</script>
+</body>
+</html>

@@ -127,10 +127,6 @@ a:focus {
   color: white;
 }
 
-.image-container {
-  display: inline-grid;
-}
-
 @media (min-width: 768px) {
   .navbar-custom {
     padding: 20px 0;
@@ -321,7 +317,20 @@ a:focus {
   color: black;
   background-color: #42DCA3;
 }
-
+.image-row {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 3%;
+}
+.image-row div {
+  display: inline-block;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+.image-container span {
+  font-family: monospace;
+  font-style: italic;
+}
 #vid div {
   margin-right: 30px;
   padding-right: 50px;

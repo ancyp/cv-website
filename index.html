@@ -198,13 +198,50 @@
                                 </p>
                                 <p>
                                     <strong>Skin Probability Mapping</strong> The result is dependent on the initial threshold values for color components. Which means this method will not generalize well for all skin tones. Also objects in the scene whose color is close to the skin color threshold act as noise. The algorithm is not robust to changes in lighting conditions since it works with hue and saturation.
+                                    <div class="image-row">
+                                        <div class="image-container">
+                                            <img class="img-responsive" src="img/spm1.png">
+                                            <span>Hand in black background</span>
+                                        </div>
+                                        <div class="image-container">
+                                            <img class="img-responsive" src="img/spm2.png">
+                                            <span>SPM does well</span>
+                                        </div>
+                                    </div>
+                                    <div class="image-row">
+
+                                        <div class="image-container">
+                                            <img class="img-responsive" src="img/spm3.png">
+                                            <span>Hand in well lit noisy background</span>
+                                        </div>
+                                        <div class="image-container">
+                                            <img class="img-responsive" src="img/spm4.png">
+                                            <span>SPM does acceptably well</span>
+                                        </div>
+                                    </div>
+                                    <div class="image-row">
+                                        <div class="image-container">
+                                            <img class="img-responsive" src="img/spm5.png">
+                                            <span>Hand with skin-colored background</span>
+                                        </div>
+                                        <div class="image-container">
+                                            <img class="img-responsive" src="img/spm6.png">
+                                            <span>SPM does not give good result</span>
+                                        </div>
+
+                                    </div>  
                                 </p>
-                                <img alt="Responsive image" class="img-responsive" src="img/SPM_bbg.png"> 
                                 <p>
                                  <strong>Image differencing</strong> This method is useful only if the hand is moving, so other moving elements in the scene add noise. Background subtraction This method does not take into account changes in lighting in the scene due to movement. The approach is highly sensitive to the initial threshold and adaptation speed and the values we have used are empirically chosen. The background subtraction algorithm fails to extract the entire hand when the latter moves over background objects of a similar color
-                             </p>
-                         </div>
-                         <div class="tab-pane text-justify" id="features-challenges" role="tabpanel">
+                                 <div class="image-row">
+                                    <div class="image-container">
+                                    <img class="img-responsive" src="img/iamge_diff.png">
+                                        <span>Image differencing has noise</span>
+                                    </div>
+                                </div>  
+                            </p>
+                        </div>
+                        <div class="tab-pane text-justify" id="features-challenges" role="tabpanel">
                             <p>
                                 <strong>HOCD</strong> does not generalise well on new hands. For some fingerspelling gestures like ’m’ and ’n’ which have almost similar shape, HOCD would give a similar feature vector and hence, we would have a bad classification using only these features. 
                                 <div class="image-row">
@@ -244,7 +281,7 @@
                             </p>
                             <p>
                                 <strong>Object detection</strong> does not generalize well to different kinds of hands. This is an important factor since no two people sign the same sign in exactly the same way.
-                              <div class="image-row">
+                                <div class="image-row">
                                     <div class="image-container">
                                         <img class="img-responsive" src="img/obj_detection_1.jpg">
                                         <span>Instance where object detection works</span>
